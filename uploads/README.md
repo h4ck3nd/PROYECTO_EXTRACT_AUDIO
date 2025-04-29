@@ -20,9 +20,10 @@ Crear manualmente una carpeta llamada uploads/ en el mismo directorio donde est�
 
 │
 
-├── app.py            # <- Este script (o el nombre que uses)
+├── extractAudio.py             # <- Este script (o el nombre que uses)
 
-├── uploads/          # <- Carpeta creada manualmente (necesaria)
+├── uploads/           # <- Carpeta creada manualmente (necesaria)
+
 
 
 > Nota: El servidor necesita la carpeta uploads/ para guardar archivos de video temporales y generar audios.
