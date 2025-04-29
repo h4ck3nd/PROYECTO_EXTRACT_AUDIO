@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    background-color: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Press Start 2P', cursive;
+    padding: 40px;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: #58a6ff;
+    margin-bottom: 20px;
+}
+
+form {
+    background-color: #161b22;
+    border-radius: 10px;
+    padding: 30px;
+    display: inline-block;
+    box-shadow: 0 0 15px rgba(88, 166, 255, 0.2);
+}
+
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-size: 14px;
+}
+
+input[type="file"],
+select {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #0d1117;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    font-size: 14px;
+}
+
+/* Botón de subida */
+input[type="submit"],
+button {
+    background-color: #238636;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+}
+
+input[type="submit"]:hover,
+button:hover {
+    background-color: #2ea043;
+    box-shadow: 0 0 10px #2ea043;
+}
+
+/* Contenedor de barra de progreso */
+.progress-container {
+    position: relative;
+    width: 80%;
+    margin: 30px auto;
+    height: 40px;
+}
+
+/* Barra de progreso */
+progress {
+    width: 100%;
+    height: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #30363d;
+    box-shadow: 0 0 10px #58a6ff80;
+    animation: glow 2s infinite;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #30363d;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background: linear-gradient(90deg, #58a6ff, #1f6feb);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+progress::-moz-progress-bar {
+    background: linear-gradient(90deg, #58a6ff, #1f6feb);
+    border-radius: 10px;
+    transition: width 0.4s ease;
+}
+
+/* Texto del porcentaje */
+.progress-text {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: #c9d1d9;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 0 0 5px #58a6ff;
+    line-height: 40px;
+    pointer-events: none;
+}
+
+/* Sección de descarga */
+#downloadSection a {
+    background-color: #238636;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 20px;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+#downloadSection a:hover {
+    background-color: #2ea043;
+    box-shadow: 0 0 10px #2ea043;
+}
+
+/* Animación de brillo */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px #58a6ff, 0 0 10px #58a6ff, 0 0 15px #58a6ff;
+    }
+    50% {
+        box-shadow: 0 0 10px #58a6ff, 0 0 20px #58a6ff, 0 0 30px #58a6ff;
+    }
+    100% {
+        box-shadow: 0 0 5px #58a6ff, 0 0 10px #58a6ff, 0 0 15px #58a6ff;
+    }
+}

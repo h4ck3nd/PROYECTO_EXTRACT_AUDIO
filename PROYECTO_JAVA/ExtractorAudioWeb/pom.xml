@@ -1,0 +1,57 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>ExtractorAudioWeb</groupId>
+  <artifactId>ExtractorAudioWeb</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
+  <build>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>22</release>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.2.3</version>
+      </plugin>
+    </plugins>
+  </build>
+  <dependencies>
+    <dependency>
+        <groupId>net.bramp.ffmpeg</groupId>
+        <artifactId>ffmpeg</artifactId>
+        <version>0.6.2</version>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.websocket</groupId>
+        <artifactId>javax.websocket-api</artifactId>
+        <version>1.1</version>
+        <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+    </dependency>
+    <!-- Dependencia de Apache HttpClient -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.13</version> <!-- O puedes usar una versión más reciente -->
+    </dependency>
+
+    <!-- Dependencia de Apache HttpMime para manejo de Multipart -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpmime</artifactId>
+        <version>4.5.13</version> <!-- O puedes usar una versión más reciente -->
+    </dependency>
+</dependencies>
+
+</project>
