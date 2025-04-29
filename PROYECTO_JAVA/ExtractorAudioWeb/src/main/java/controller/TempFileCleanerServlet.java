@@ -19,8 +19,8 @@ public class TempFileCleanerServlet extends HttpServlet {
         System.out.println("[DEBUG] Inicio de limpieza de archivos temporales...");
 
         // Carpetas a limpiar
-        String uploadFolderPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\uploads";
-        String audioFolderPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios";
+        String uploadFolderPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\uploads"; //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("")
+        String audioFolderPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios"; //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("")
 
         // Limpiar uploads de Java
         limpiarCarpeta(uploadFolderPath, "[DEBUG] Archivo de subida (Java)");
