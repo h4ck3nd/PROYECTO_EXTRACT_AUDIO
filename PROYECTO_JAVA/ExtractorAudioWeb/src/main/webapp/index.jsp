@@ -130,7 +130,6 @@
 	    font-size: 14px;
 	    border-radius: 5px;
 	    display: inline-block;
-	    margin-top: 20px;
 	    transition: background-color 0.3s, box-shadow 0.3s;
 	}
 	
@@ -151,7 +150,6 @@
 	        box-shadow: 0 0 5px #58a6ff, 0 0 10px #58a6ff, 0 0 15px #58a6ff;
 	    }
 	}
-    
     	.submit-btn {
 		    background-color: #238636;
 		    color: white;
@@ -177,9 +175,41 @@
 		    transform: scale(0.98);
 		    box-shadow: 0 0 5px #196c2e;
 		}
+		#dropOverlay {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background-color: rgba(13, 17, 23, 0.9); /* fondo oscuro semitransparente */
+		    color: #58a6ff;
+		    font-family: 'Press Start 2P', cursive;
+		    font-size: 18px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    z-index: 9999;
+		    display: none; /* oculto al principio */
+		}
+		
+		#dropMessage {
+		    text-align: center;
+		    font-size: 24px;
+		    color: #58a6ff;
+		    padding: 20px;
+		    border: 2px dashed #58a6ff;
+		    border-radius: 10px;
+		    background-color: rgba(22, 27, 34, 0.9); /* un fondo un poco más marcado dentro */
+		}
     </style>
 </head>
 <body>
+
+	<!-- DRAG AND DROP -->
+	<div id="dropOverlay"> 
+	    <div id="dropMessage">¡Suelta tu video aquí!</div>
+	</div>
+	
     <h1>Extraer Audio de Video</h1>
     <br><br><br><br>
     <div class="upload-container">
@@ -270,6 +300,36 @@
                 progressText.hide(); // <<-- también ocultamos en caso de error
             }
         });
+    });
+    
+    // FUNCION DE DRAG AND DROP
+    
+    const dropOverlay = document.getElementById('dropOverlay');
+    const videoInput = document.getElementById('videoFile');
+
+    // Cuando arrastras algo en la ventana
+    window.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        dropOverlay.style.display = 'flex';
+    });
+
+    // Cuando sales del área sin soltar
+    window.addEventListener('dragleave', function(e) {
+        if (e.pageX <= 0 || e.pageY <= 0 || 
+            e.pageX >= window.innerWidth || e.pageY >= window.innerHeight) {
+            dropOverlay.style.display = 'none';
+        }
+    });
+
+    // Cuando sueltas un archivo
+    window.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropOverlay.style.display = 'none';
+
+        const files = e.dataTransfer.files;
+        if (files.length > 0) {
+            videoInput.files = files; // Carga automáticamente en el input
+        }
     });
 </script>
 </body>
