@@ -31,7 +31,7 @@ public class VideoUploadServlet extends HttpServlet {
         System.out.println("[DEBUG] Formato de audio seleccionado: " + audioFormat);
 
         // Guardar el archivo de video temporalmente
-        File tempFile = new File("C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\uploads", videoFileName);
+        File tempFile = new File("C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\uploads", videoFileName); //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("") 
         try (FileOutputStream out = new FileOutputStream(tempFile)) {
             byte[] buffer = new byte[1024];
             int bytesRead;
@@ -61,7 +61,7 @@ public class VideoUploadServlet extends HttpServlet {
             String audioFileName = "extracted_audio." + audioFormat;
 
             // Ruta donde guardar el audio
-            String audioPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios\\" + audioFileName;
+            String audioPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios\\" + audioFileName; //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("")
 
             try (OutputStream out = new FileOutputStream(audioPath)) {
                 byte[] buffer = new byte[1024];
