@@ -24,7 +24,9 @@ public class AudioDownloadServlet extends HttpServlet {
 
         audioName = audioName.substring(1); // quitar "/" inicial
 
-        File audioFile = new File("C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios", audioName); //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("")
+        // Obtener ruta absoluta del directorio 'audios'
+        String audiosFolderPath = request.getServletContext().getRealPath("/audios");
+        File audioFile = new File(audiosFolderPath, audioName);
 
         if (!audioFile.exists() || audioFile.isDirectory()) {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "Audio no encontrado");

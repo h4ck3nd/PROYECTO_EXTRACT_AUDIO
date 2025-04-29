@@ -27,11 +27,19 @@ public class VideoUploadServlet extends HttpServlet {
         InputStream videoInputStream = videoPart.getInputStream();
 
         // Leer el formato seleccionado del formulario
-        String audioFormat = request.getParameter("format"); // <- nuevo
+        String audioFormat = request.getParameter("format");
         System.out.println("[DEBUG] Formato de audio seleccionado: " + audioFormat);
 
+        // Obtener rutas dinámicas
+        String uploadsDirPath = request.getServletContext().getRealPath("/uploads");
+        String audiosDirPath = request.getServletContext().getRealPath("/audios");
+
+        // Crear carpetas si no existen
+        new File(uploadsDirPath).mkdirs();
+        new File(audiosDirPath).mkdirs();
+
         // Guardar el archivo de video temporalmente
-        File tempFile = new File("C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\uploads", videoFileName); //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("") 
+        File tempFile = new File(uploadsDirPath, videoFileName);
         try (FileOutputStream out = new FileOutputStream(tempFile)) {
             byte[] buffer = new byte[1024];
             int bytesRead;
@@ -45,10 +53,9 @@ public class VideoUploadServlet extends HttpServlet {
         try (CloseableHttpClient client = HttpClients.createDefault()) {
             HttpPost httpPost = new HttpPost("http://localhost:5000/extract_audio");
 
-            // Preparar la solicitud multipart
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.addPart("video", new FileBody(tempFile, ContentType.APPLICATION_OCTET_STREAM, videoFileName));
-            builder.addTextBody("format", audioFormat); // <- enviar formato también
+            builder.addTextBody("format", audioFormat);
 
             httpPost.setEntity(builder.build());
             HttpResponse flaskResponse = client.execute(httpPost);
@@ -60,24 +67,22 @@ public class VideoUploadServlet extends HttpServlet {
             // Nombre dinámico del audio final
             String audioFileName = "extracted_audio." + audioFormat;
 
-            // Ruta donde guardar el audio
-            String audioPath = "C:\\Users\\clipt\\eclipse-workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\ExtractorAudioWeb\\audios\\" + audioFileName; //CAMBIAR HA RUTA DE LA CARPETA TEMPORAL DEL PROYECTO DENTRO DE LAS ("")
-
-            try (OutputStream out = new FileOutputStream(audioPath)) {
+            // Guardar el audio
+            File audioFile = new File(audiosDirPath, audioFileName);
+            try (OutputStream out = new FileOutputStream(audioFile)) {
                 byte[] buffer = new byte[1024];
                 int bytesRead;
                 while ((bytesRead = audioStream.read(buffer)) != -1) {
                     out.write(buffer, 0, bytesRead);
                 }
             }
-            System.out.println("[DEBUG] Audio guardado en: " + audioPath);
+            System.out.println("[DEBUG] Audio guardado en: " + audioFile.getAbsolutePath());
 
-            // Ahora responder al navegador
+            // Responder al navegador
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter writer = response.getWriter();
 
-            // Devuelve el nombre del archivo (no ruta completa)
             writer.write("{\"status\":\"success\", \"audioName\":\"" + audioFileName + "\"}");
             writer.flush();
             System.out.println("[DEBUG] Respuesta enviada al cliente con audio: " + audioFileName);
