@@ -20,7 +20,7 @@ Crear manualmente una carpeta llamada uploads/ en el mismo directorio donde est�
 
 │
 
-├── extractAudio.py                       # <- Este script (o el nombre que uses)
+├── extractAudio.py                       # <- Este script
 
 ├── uploads/                              # <- Carpeta creada manualmente (necesaria)
 
