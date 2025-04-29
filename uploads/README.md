@@ -17,11 +17,11 @@ Crear manualmente una carpeta llamada uploads/ en el mismo directorio donde est�
 ## Estructura esperada
 
 /tu-carpeta-del-proyecto
-|
+
 │
-|
+
 ├── app.py            # <- Este script (o el nombre que uses)
-|
+
 ├── uploads/          # <- Carpeta creada manualmente (necesaria)
 
 
